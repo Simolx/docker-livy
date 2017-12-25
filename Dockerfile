@@ -9,6 +9,7 @@ ENV SPARK_HADOOP_VERSION 2.7
 ENV JAVA_HOME /opt/sparkdistribute/jdk1.8.0_151
 ENV PATH $JAVA_HOME/bin:/opt/anaconda/bin:$PATH
 ENV HADOOP_CONF_DIR /opt/sparkdistribute/hadoop-${HADOOP_VERSION}/conf
+ENV SPARK_HOME /opt/sparkdistribute/spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_VERSION}
 
 RUN /bin/cp -f /usr/share/zoneinfo/$TZ /etc/localtime
 RUN yum -y update \

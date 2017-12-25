@@ -39,7 +39,7 @@ RUN curl -O -L https://archive.apache.org/dist/hadoop/core/hadoop-${HADOOP_VERSI
     && mv /opt/sparkdistribute/hadoop-${HADOOP_VERSION}/etc/hadoop /opt/sparkdistribute/hadoop-${HADOOP_VERSION}/conf \
     && rm -r /opt/sparkdistribute/hadoop-${HADOOP_VERSION}/etc 
 # install livy
-RUN curl -O -L http://www.apache.org/dyn/closer.lua/incubator/livy/0.4.0-incubating/livy-0.4.0-incubating-bin.zip \
+RUN curl -O -L http://archive.apache.org/dist/incubator/livy/0.4.0-incubating/livy-0.4.0-incubating-bin.zip \
     && unzip livy-0.4.0-incubating-bin.zip -d /opt/sparkdistribute \
     && rm -f livy-0.4.0-incubating-bin.zip
 RUN sed -i -e '/Defaults    requiretty/{ s/.*/# Defaults    requiretty/ }' /etc/sudoers

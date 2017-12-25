@@ -13,7 +13,7 @@ ENV SPARK_HOME /opt/sparkdistribute/spark-${SPARK_VERSION}-bin-hadoop${SPARK_HAD
 
 RUN /bin/cp -f /usr/share/zoneinfo/$TZ /etc/localtime
 RUN yum -y update \
-    && yum install -y which openssh openssh-clients openssh-server bzip2 vim sudo \
+    && yum install -y which openssh openssh-clients openssh-server bzip2 vim sudo unzip \
     && yum clean all \
     && rm -rf /var/cache/yum
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8

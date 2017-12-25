@@ -32,6 +32,12 @@ RUN pip install --upgrade pip setuptools \
 RUN curl -O -L https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_VERSION}.tgz \
     && tar -xzf spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_VERSION}.tgz -C /opt/sparkdistribute \
     && rm -f spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_VERSION}.tgz
+# add hadoop configuration
+RUN curl -O -L https://archive.apache.org/dist/hadoop/core/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz \
+    && tar -xzf hadoop-${HADOOP_VERSION}.tar.gz -C /opt/sparkdistribute \
+    && rm -rf hadoop-${HADOOP_VERSION}.tar.gz /opt/sparkdistribute/hadoop-${HADOOP_VERSION}/!(etc) \
+    && mv /opt/sparkdistribute/hadoop-${HADOOP_VERSION}/etc/hadoop /opt/sparkdistribute/hadoop-${HADOOP_VERSION}/conf \
+    && rm -r /opt/sparkdistribute/hadoop-${HADOOP_VERSION}/etc 
 # install livy
 RUN curl -O -L http://www.apache.org/dyn/closer.lua/incubator/livy/0.4.0-incubating/livy-0.4.0-incubating-bin.zip \
     && unzip livy-0.4.0-incubating-bin.zip -d /opt/sparkdistribute \

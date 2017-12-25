@@ -8,7 +8,7 @@ ENV HADOOP_VERSION 2.7.2
 ENV SPARK_HADOOP_VERSION 2.7
 ENV JAVA_HOME /opt/sparkdistribute/jdk1.8.0_151
 ENV PATH $JAVA_HOME/bin:/opt/anaconda/bin:$PATH
-ENV HADOOP_CONF_DIR /opt/sparkdistribute/hadoop-${HADOOP_VERSION}/conf
+ENV HADOOP_CONF_DIR /opt/sparkdistribute/hadoop-${HADOOP_VERSION}/etc/hadoop
 ENV SPARK_HOME /opt/sparkdistribute/spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_VERSION}
 
 RUN /bin/cp -f /usr/share/zoneinfo/$TZ /etc/localtime
@@ -35,10 +35,8 @@ RUN curl -O -L https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spar
     && rm -f spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_VERSION}.tgz
 # add hadoop configuration
 RUN curl -O -L https://archive.apache.org/dist/hadoop/core/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz \
-    && tar -xzf hadoop-${HADOOP_VERSION}.tar.gz -C /opt/sparkdistribute \
-    && rm -rf hadoop-${HADOOP_VERSION}.tar.gz /opt/sparkdistribute/hadoop-${HADOOP_VERSION}/!(etc) \
-    && mv /opt/sparkdistribute/hadoop-${HADOOP_VERSION}/etc/hadoop /opt/sparkdistribute/hadoop-${HADOOP_VERSION}/conf \
-    && rm -r /opt/sparkdistribute/hadoop-${HADOOP_VERSION}/etc 
+    && tar -C /opt/sparkdistribute -xzf hadoop-${HADOOP_VERSION}.tar.gz hadoop-${HADOOP_VERSION}/etc \
+    && rm -rf hadoop-${HADOOP_VERSION}.tar.gz 
 # install livy
 RUN curl -O -L http://archive.apache.org/dist/incubator/livy/0.4.0-incubating/livy-0.4.0-incubating-bin.zip \
     && unzip livy-0.4.0-incubating-bin.zip -d /opt/sparkdistribute \

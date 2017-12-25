@@ -16,7 +16,7 @@ RUN yum -y update \
     && yum clean all \
     && rm -rf /var/cache/yum
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
-RUN mkdir -p ${HADOOP_CONF_DIR}
+RUN mkdir /opt/sparkdistribute
 # install jdk
 RUN curl -O -v -j -k -L -H "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.tar.gz \
     && tar -xzf jdk-8u151-linux-x64.tar.gz -C /opt/sparkdistribute && \
@@ -47,6 +47,6 @@ RUN useradd elasticsearch \
     && useradd gdata
 WORKDIR /opt/baitu
 
-VOLUME [ "${HADOOP_CONF_DIR", "/opt/baitu" ]
+VOLUME [ "${HADOOP_CONF_DIR}", "/opt/sparkdistribute/spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_VERSION}/conf", "/opt/livy-0.4.0-incubating-bin/conf", "/opt/baitu" ]
 EXPOSE 8998
 CMD ["/opt/sparkdistribute/livy-0.4.0-incubating-bin/bin/livy-server"]

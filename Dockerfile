@@ -8,5 +8,5 @@ RUN curl -O -L http://archive.apache.org/dist/incubator/livy/${LIVY_VERSION}/liv
     rm -f livy-${LIVY_VERSION}-bin.zip && \
     mkdir /opt/distribute/livy-${LIVY_VERSION}-bin/logs
 COPY conf/livy/* /opt/distribute/livy-${LIVY_VERSION}-bin/conf/
-EXPOSE 8998
+EXPOSE 18998
 CMD ["/opt/distribute/livy-0.4.0-incubating-bin/bin/livy-server"]

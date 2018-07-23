@@ -1,7 +1,7 @@
 FROM dieudonne/docker-spark
 MAINTAINER Dieudonne lx <lx.simon@yahoo.com>
 
-ENV LIVY_VERSION=0.5.0-incubating \
+ENV LIVY_VERSION=0.4.0-incubating \
     LIVY_HOME=/opt/distribute/livy-bin
 # install livy
 RUN curl -O -L http://archive.apache.org/dist/incubator/livy/${LIVY_VERSION}/livy-${LIVY_VERSION}-bin.zip && \
